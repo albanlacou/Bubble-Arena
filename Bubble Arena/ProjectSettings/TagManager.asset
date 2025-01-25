@@ -6,9 +6,9 @@ TagManager:
   tags:
   - Arena
   - Player1
-  - Player2
   - SoundManager
   - GameManager
+  - UIScore
   layers:
   - Default
   - TransparentFX
