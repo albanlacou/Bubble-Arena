@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public int speed = 1;
 
-    public Rigidbody rb;
+    private Rigidbody rb;
 
     private Vector3 oldPosition;
-
-    public Vector3 force;
 
     private float mouvementHorizontal;
 
@@ -20,14 +19,17 @@ public class Player : MonoBehaviour
 
     public Vector3 vectorDirecteur;
 
-    public Vector3 oldVelocity;
+    private CameraShake shake;
+
+    private SoundManager soundManager;
 
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        //rb.AddForce(force, ForceMode.Impulse);
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        shake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();  
     }
 
     // Update is called once per frame
@@ -49,19 +51,18 @@ public class Player : MonoBehaviour
 
         oldPosition = gameObject.transform.position;
 
-        oldVelocity = rb.velocity;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        soundManager.playExplosion();
+        shake.shakeDuration = 0.2f;
+
         if (collision.gameObject.GetComponent<Player>())
         {
             // Calculer la direction opposée
             Vector3 collisionDirection = transform.position - collision.transform.position;
             collisionDirection.Normalize(); // Normaliser pour obtenir une direction unitaire
-            Vector3 relativeVelocity = collision.relativeVelocity;
-            float test = Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y);
-            Debug.Log(isPlayerOne +" : "+ rb.velocity.magnitude);
 
             
             // Appliquer une force opposée
