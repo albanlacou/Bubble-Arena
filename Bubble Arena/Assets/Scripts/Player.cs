@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,6 +22,12 @@ public class Player : MonoBehaviour
     public Vector3 vectorDirecteur;
 
     public Vector3 oldVelocity;
+
+    [SerializeField]
+    private CameraShake shake;
+
+    [SerializeField]
+    private AudioSource explosion;
 
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
@@ -54,14 +61,14 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        explosion.Play();
+        shake.shakeDuration = 0.2f;
+
         if (collision.gameObject.GetComponent<Player>())
         {
             // Calculer la direction opposée
             Vector3 collisionDirection = transform.position - collision.transform.position;
             collisionDirection.Normalize(); // Normaliser pour obtenir une direction unitaire
-            Vector3 relativeVelocity = collision.relativeVelocity;
-            float test = Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y);
-            Debug.Log(isPlayerOne +" : "+ rb.velocity.magnitude);
 
             
             // Appliquer une force opposée
