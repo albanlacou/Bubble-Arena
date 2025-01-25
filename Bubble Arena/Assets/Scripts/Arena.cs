@@ -43,12 +43,12 @@ public class Arena : MonoBehaviour
 
         if (destroyPlayer.CompareTag("Player1"))
         {
-            Instantiate(Player1, new Vector3(2.22f, 2.07f, 0), Quaternion.identity);
+            Instantiate(Player1, new Vector3(2.22f, 2.07f, -0.5f), Quaternion.identity);
             pointPlayer2++;
         }
         if (destroyPlayer.CompareTag("Player2"))
         {
-            Instantiate(Player2, new Vector3(-2.17f, -1.38f, 0), Quaternion.identity);
+            Instantiate(Player2, new Vector3(-2.17f, -1.38f, -0.5f), Quaternion.identity);
             pointPlayer1++;
         }
     }
