@@ -23,10 +23,16 @@ public class Player : MonoBehaviour
 
     private SoundManager soundManager;
 
+    [SerializeField]
+    public float baseForce = 10f; // La force de base appliquée
+    public float forceIncreaseRate = 1f; // Augmentation de la force par seconde
+
+    private float accumulatedForce;
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
     void Start()
     {
+        accumulatedForce = baseForce;
         rb = gameObject.GetComponent<Rigidbody>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         shake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();  
@@ -50,6 +56,7 @@ public class Player : MonoBehaviour
         
 
         oldPosition = gameObject.transform.position;
+        accumulatedForce += forceIncreaseRate * Time.deltaTime;
 
     }
 
@@ -66,7 +73,7 @@ public class Player : MonoBehaviour
 
             
             // Appliquer une force opposée
-            rb.AddForce(collisionDirection * 6, ForceMode.Impulse);
+            rb.AddForce(collisionDirection * accumulatedForce, ForceMode.Impulse);
 
 
             
