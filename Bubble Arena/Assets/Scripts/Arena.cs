@@ -8,14 +8,23 @@ public class Arena : MonoBehaviour
     public GameObject Player2;
     public Vector3 spawnPosition;
     private GameObject destroyPlayer;
-    public short pointPlayer1;
-    public short pointPlayer2;
+    public short pointPlayer1 = 0;
+    public short pointPlayer2 = 0;
+
+    public static Arena instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        pointPlayer1 = 0;
-        pointPlayer2 = 0;
+        
 }
 
     // Update is called once per frame
