@@ -67,8 +67,6 @@ public class Arena : MonoBehaviour
                     ReactifAllPlayer();
                     scoreDisplay.scoreHUD();
                 }
-                    
-
             }
             roundManager.ChangeRound();
 

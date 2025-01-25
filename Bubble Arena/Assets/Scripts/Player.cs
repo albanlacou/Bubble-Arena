@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
 
     private RoundManager roundManager;
 
+    public short pointPlayer = 0;
+
+    public Vector3 spawnPoint;
+
+
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
     void Start()
@@ -33,6 +38,7 @@ public class Player : MonoBehaviour
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         roundManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundManager>();
         shake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();  
+        spawnPoint = transform.position;
     }
 
     // Update is called once per frame
