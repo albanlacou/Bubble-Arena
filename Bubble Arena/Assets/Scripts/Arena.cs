@@ -8,8 +8,8 @@ public class Arena : MonoBehaviour
     public GameObject Player2;
     public Vector3 spawnPosition;
     private GameObject destroyPlayer;
-    private short pointPlayer1;
-    private short pointPlayer2;
+    public short pointPlayer1;
+    public short pointPlayer2;
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +36,11 @@ public class Arena : MonoBehaviour
         {
             Instantiate(Player1, new Vector3(2.22f, 2.07f, 0), Quaternion.identity);
             pointPlayer2++;
-            Debug.Log("Le player 1 a " + pointPlayer1 + " points.");
         }
         if (destroyPlayer.CompareTag("Player2"))
         {
             Instantiate(Player2, new Vector3(-2.17f, -1.38f, 0), Quaternion.identity);
             pointPlayer1++;
-            Debug.Log("Le player 2 a " + pointPlayer2 + " points.");
         }
-
     }
 }
