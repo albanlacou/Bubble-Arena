@@ -7,11 +7,9 @@ public class Player : MonoBehaviour
 {
     public int speed = 1;
 
-    public Rigidbody rb;
+    private Rigidbody rb;
 
     private Vector3 oldPosition;
-
-    public Vector3 force;
 
     private float mouvementHorizontal;
 
@@ -21,20 +19,17 @@ public class Player : MonoBehaviour
 
     public Vector3 vectorDirecteur;
 
-    public Vector3 oldVelocity;
-
-    [SerializeField]
     private CameraShake shake;
 
-    [SerializeField]
-    private AudioSource explosion;
+    private SoundManager soundManager;
 
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        //rb.AddForce(force, ForceMode.Impulse);
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        shake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();  
     }
 
     // Update is called once per frame
@@ -56,12 +51,11 @@ public class Player : MonoBehaviour
 
         oldPosition = gameObject.transform.position;
 
-        oldVelocity = rb.velocity;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        explosion.Play();
+        soundManager.playExplosion();
         shake.shakeDuration = 0.2f;
 
         if (collision.gameObject.GetComponent<Player>())
