@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Arena
+  - Player1
+  - Player2
+  - SoundManager
+  - GameManager
   layers:
   - Default
   - TransparentFX
