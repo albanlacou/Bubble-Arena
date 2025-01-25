@@ -23,11 +23,16 @@ public class Player : MonoBehaviour
 
     private SoundManager soundManager;
 
+
     [SerializeField]
     public float baseForce = 10f; // La force de base appliquée
     public float forceIncreaseRate = 1f; // Augmentation de la force par seconde
 
     private float accumulatedForce;
+
+    private RoundManager roundManager;
+
+
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
     void Start()
@@ -35,28 +40,34 @@ public class Player : MonoBehaviour
         accumulatedForce = baseForce;
         rb = gameObject.GetComponent<Rigidbody>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        roundManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundManager>();
         shake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();  
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 position = gameObject.transform.position;
-        vectorDirecteur = new Vector3(oldPosition.x - position.x, oldPosition.y - position.y, oldPosition.z - position.z);
-        if (isPlayerOne)
+        if (roundManager.playerCanMove)
         {
-            mouvementHorizontal = Input.GetAxis("Horizontal");
-            mouvementVertical = Input.GetAxis("Vertical");
-        }
-        else
-        {
-            mouvementHorizontal = Input.GetAxis("Player2Horizontal");
-            mouvementVertical = Input.GetAxis("Player2Vertical");
+            Vector3 position = gameObject.transform.position;
+            vectorDirecteur = new Vector3(oldPosition.x - position.x, oldPosition.y - position.y, oldPosition.z - position.z);
+            if (isPlayerOne)
+            {
+                mouvementHorizontal = Input.GetAxis("Horizontal");
+                mouvementVertical = Input.GetAxis("Vertical");
+            }
+            else
+            {
+                mouvementHorizontal = Input.GetAxis("Player2Horizontal");
+                mouvementVertical = Input.GetAxis("Player2Vertical");
+            }
+            oldPosition = gameObject.transform.position;
         }
         
 
         oldPosition = gameObject.transform.position;
         accumulatedForce += forceIncreaseRate * Time.deltaTime;
+
 
     }
 
@@ -76,6 +87,7 @@ public class Player : MonoBehaviour
             rb.AddForce(collisionDirection * accumulatedForce, ForceMode.Impulse);
 
 
+
             
         }
         
@@ -87,9 +99,6 @@ public class Player : MonoBehaviour
     {
        
             rb.AddForce( new Vector3(mouvementHorizontal * speed, mouvementVertical*speed,0), ForceMode.Acceleration);
-           
-       
-        
-        
+
     }
 }
