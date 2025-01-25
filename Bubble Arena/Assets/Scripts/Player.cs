@@ -23,33 +23,38 @@ public class Player : MonoBehaviour
 
     private SoundManager soundManager;
 
+    private RoundManager roundManager;
+
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        roundManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundManager>();
         shake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();  
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 position = gameObject.transform.position;
-        vectorDirecteur = new Vector3(oldPosition.x - position.x, oldPosition.y - position.y, oldPosition.z - position.z);
-        if (isPlayerOne)
+        if (roundManager.playerCanMove)
         {
-            mouvementHorizontal = Input.GetAxis("Horizontal");
-            mouvementVertical = Input.GetAxis("Vertical");
-        }
-        else
-        {
-            mouvementHorizontal = Input.GetAxis("Player2Horizontal");
-            mouvementVertical = Input.GetAxis("Player2Vertical");
+            Vector3 position = gameObject.transform.position;
+            vectorDirecteur = new Vector3(oldPosition.x - position.x, oldPosition.y - position.y, oldPosition.z - position.z);
+            if (isPlayerOne)
+            {
+                mouvementHorizontal = Input.GetAxis("Horizontal");
+                mouvementVertical = Input.GetAxis("Vertical");
+            }
+            else
+            {
+                mouvementHorizontal = Input.GetAxis("Player2Horizontal");
+                mouvementVertical = Input.GetAxis("Player2Vertical");
+            }
+            oldPosition = gameObject.transform.position;
         }
         
-
-        oldPosition = gameObject.transform.position;
 
     }
 
@@ -66,7 +71,7 @@ public class Player : MonoBehaviour
 
             
             // Appliquer une force opposée
-            rb.AddForce(collisionDirection * 6, ForceMode.Impulse);
+            rb.AddForce(collisionDirection * 10, ForceMode.Impulse);
 
 
             
@@ -80,9 +85,6 @@ public class Player : MonoBehaviour
     {
        
             rb.AddForce( new Vector3(mouvementHorizontal * speed, mouvementVertical*speed,0), ForceMode.Acceleration);
-           
-       
-        
-        
+
     }
 }

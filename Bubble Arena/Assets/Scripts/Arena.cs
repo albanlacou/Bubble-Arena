@@ -13,6 +13,8 @@ public class Arena : MonoBehaviour
 
     public static Arena instance;
 
+    private RoundManager roundManager;
+
     private void Awake()
     {
         if (instance == null)
@@ -24,7 +26,8 @@ public class Arena : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        roundManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundManager>();
+
 }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class Arena : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        roundManager.ChangeRound();
+
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             destroyPlayer = other.gameObject;
