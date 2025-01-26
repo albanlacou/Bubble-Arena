@@ -27,13 +27,16 @@ public class Arena : MonoBehaviour
             instance = this;
         }
         int tata = PlayerPrefs.GetInt("NbJoueurs");
+        if(tata == 0) {
+            tata = 2;
+        }
 
 
         Player[] allPlayers = FindObjectsOfType<Player>();
 
         List<GameObject> playersToRemove = new List<GameObject>();
 
-        // Identifier les joueurs à supprimer
+        // Identifier les joueurs ï¿½ supprimer
         foreach (Player player in allPlayers)
         {
             if (player.NumeroPlayer > tata)
@@ -42,13 +45,14 @@ public class Arena : MonoBehaviour
             }
         }
 
-        // Supprimer les joueurs identifiés
+        // Supprimer les joueurs identifiï¿½s
         foreach (GameObject playerObj in playersToRemove)
         {
             Debug.Log($"Suppression du joueur {playerObj.name} avec NumeroPlayer {playerObj.GetComponent<Player>().NumeroPlayer}");
             Destroy(playerObj);
         }
-
+        
+        currentPlayer = tata;
     }
 
     // Start is called before the first frame update
