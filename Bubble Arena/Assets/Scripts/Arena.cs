@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Arena : MonoBehaviour
 {
-    public GameObject Player1;
-    public GameObject Player2;
-    public Vector3 spawnPosition;
-    private GameObject destroyPlayer;
-    public short pointPlayer1 = 0;
-    public short pointPlayer2 = 0;
+    public int currentPlayer;
 
     public static Arena instance;
 
     private RoundManager roundManager;
+
+    private GameObject lastPlayer;
+
+    public List<Player> playerToReactive;
+
+    public ScoreDisplay scoreDisplay;
+
+
 
     private void Awake()
     {
@@ -21,6 +26,29 @@ public class Arena : MonoBehaviour
         {
             instance = this;
         }
+        int tata = PlayerPrefs.GetInt("NbJoueurs");
+
+
+        Player[] allPlayers = FindObjectsOfType<Player>();
+
+        List<GameObject> playersToRemove = new List<GameObject>();
+
+        // Identifier les joueurs à supprimer
+        foreach (Player player in allPlayers)
+        {
+            if (player.NumeroPlayer > tata)
+            {
+                playersToRemove.Add(player.gameObject);
+            }
+        }
+
+        // Supprimer les joueurs identifiés
+        foreach (GameObject playerObj in playersToRemove)
+        {
+            Debug.Log($"Suppression du joueur {playerObj.name} avec NumeroPlayer {playerObj.GetComponent<Player>().NumeroPlayer}");
+            Destroy(playerObj);
+        }
+
     }
 
     // Start is called before the first frame update
@@ -28,33 +56,61 @@ public class Arena : MonoBehaviour
     {
         roundManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundManager>();
 
-}
+        
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-
     }
+
+    
 
     void OnTriggerExit(Collider other)
     {
-        roundManager.ChangeRound();
+        //a changer
 
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
-        {
-            destroyPlayer = other.gameObject;
-            Destroy(other.gameObject);
-        }
+        Player player = other.gameObject.GetComponent<Player>();
 
-        if (destroyPlayer.CompareTag("Player1"))
-        {
-            Instantiate(Player1, new Vector3(2.22f, 2.07f, -0.5f), Quaternion.identity);
-            pointPlayer2++;
+        playerToReactive.Add(player);
+        other.gameObject.SetActive(false);
+
+        currentPlayer--;
+        
+        if (currentPlayer == 1)
+        { 
+            GameObject[] lastPlayers = GameObject.FindGameObjectsWithTag("Player");
+            Debug.Log(lastPlayers.Length);
+
+            foreach (GameObject p in lastPlayers)
+            {
+                if (p.activeSelf)
+                {
+                    p.GetComponent<Player>().pointPlayer++;
+                    p.gameObject.transform.position = p.gameObject.GetComponent<Player>().spawnPoint;
+                    ReactifAllPlayer();
+                    scoreDisplay.scoreHUD();
+                }
+            }
+            roundManager.ChangeRound();
+            reInit();
+
         }
-        if (destroyPlayer.CompareTag("Player2"))
-        {
-            Instantiate(Player2, new Vector3(-2.17f, -1.38f, -0.5f), Quaternion.identity);
-            pointPlayer1++;
+    }
+
+    void ReactifAllPlayer()
+    {
+        Debug.Log(playerToReactive.Count());
+        foreach (Player pR in playerToReactive) { 
+            pR.gameObject.SetActive(true);
+            pR.gameObject.transform.position = pR.gameObject.GetComponent<Player>().spawnPoint;
         }
+    }
+
+
+    public void reInit()
+    {
+        currentPlayer = GameObject.FindGameObjectsWithTag("Player").Count();
     }
 }
