@@ -10,6 +10,11 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource explosion;
 
+    [SerializeField]
+    private AudioSource roundSource;
+
+    [SerializeField]
+    private AudioSource music;
 
     // Start is called before the first frame update
     void Start()
@@ -28,4 +33,24 @@ public class SoundManager : MonoBehaviour
         explosion.Play();
 
     }
+
+    public void playRound(int round)
+    {
+        roundSource.clip = roundSound[round - 1];
+        musicVolumeDown();
+        roundSource.Play();
+        Invoke(nameof(musicVolumeUp),2f);
+    }
+
+    public void musicVolumeDown()
+    {
+        music.volume = 0.4f;
+    }
+
+    public void musicVolumeUp()
+    {
+        
+        music.volume = 1f;
+    }
 }
+
