@@ -118,14 +118,11 @@ private void OnCollisionEnter(Collision collision)
 
     if (collision.gameObject.GetComponent<Player>())
     {
-        soundManager.playExplosion();
-        shake.shakeDuration = 0.2f;
+        Vector3 collisionDirection = transform.position - collision.transform.position;
+        collisionDirection.Normalize(); 
 
-        if (collision.gameObject.GetComponent<Player>())
-        {
-            // Calculer la direction opposée
-            Vector3 collisionDirection = transform.position - collision.transform.position;
-            collisionDirection.Normalize(); // Normaliser pour obtenir une direction unitaire
+        rb.AddForce(collisionDirection * accumulatedForce, ForceMode.Impulse);
+    }
 
             
             // Appliquer une force opposée
