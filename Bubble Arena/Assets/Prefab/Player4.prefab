@@ -152,6 +152,12 @@ MonoBehaviour:
   speed: 1
   isPlayerOne: 0
   vectorDirecteur: {x: 0, y: 0, z: 0}
+  cooldownTime: 3
+  baseForce: 10
+  forceIncreaseRate: 1
   pointPlayer: 0
   spawnPoint: {x: 1.81, y: -1.93, z: 0.02388017}
+  toto: 1
+  NumeroPlayer: 0
   vitesse: 150
+  collisionParticlesPrefab: {fileID: 7893997049988400739, guid: 3adefb26dd2a5a045b9ce75031b7a092, type: 3}

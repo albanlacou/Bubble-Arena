@@ -50,6 +50,9 @@ public class Player : MonoBehaviour
 
 
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
+
+    [SerializeField] private GameObject collisionParticlesPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,7 +111,12 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+private void OnCollisionEnter(Collision collision)
+{
+    soundManager.playExplosion();
+    shake.shakeDuration = 0.2f;
+
+    if (collision.gameObject.GetComponent<Player>())
     {
         soundManager.playExplosion();
         shake.shakeDuration = 0.2f;
@@ -124,10 +132,17 @@ public class Player : MonoBehaviour
             rb.AddForce(collisionDirection * Mathf.Max(accumulatedForce, 15), ForceMode.Impulse);
             
         }
-        
-       
-
     }
+
+    if (collisionParticlesPrefab != null && collision.contacts.Length > 0)
+    {
+        ContactPoint contact = collision.contacts[0];
+        GameObject particles = Instantiate(collisionParticlesPrefab, contact.point, Quaternion.identity);
+    
+        Destroy(particles, 2f);
+    }
+}
+
 
     void FixedUpdate()
     {

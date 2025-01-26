@@ -6,7 +6,14 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
-
+    //RAF:
+    //TOFO: ajouter les animation de Raphael
+    //FOTO: ajouter le controle de volumr
+    //POTO: Relier les scenes
+    //TODO ajouter une fin
+    //polish ?cran de s?l?ction des persos
+    //ajouter un nb de rounds
+    //d?sactiver les scores pour les joueurs non pr?sent
     public int round = 0;
 
     public int nbPlayer = 0;
