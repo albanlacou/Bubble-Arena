@@ -78,19 +78,19 @@ public class Player : MonoBehaviour
             {
                 mouvementHorizontal = Input.GetAxis("Player2Horizontal");
                 mouvementVertical = Input.GetAxis("Player2Vertical");
-                ash = Input.GetAxis("PlayerTwoDash");
+                dash = Input.GetAxis("PlayerTwoDash");
             }
             else if(NumeroPlayer == 3)
             {
                 mouvementHorizontal = Input.GetAxis("Player3Horizontal");
                 mouvementVertical = Input.GetAxis("Player3Vertical");
-                ash = Input.GetAxis("PlayerThreeDash");
+                dash = Input.GetAxis("PlayerThreeDash");
             }
             else if(NumeroPlayer == 4)
             {
                 mouvementHorizontal = Input.GetAxis("Player4Horizontal");
                 mouvementVertical = Input.GetAxis("Player4Vertical");
-                ash = Input.GetAxis("PlayerForDash");
+                dash = Input.GetAxis("PlayerForDash");
             }
             oldPosition = gameObject.transform.position;
 
@@ -139,7 +139,6 @@ public class Player : MonoBehaviour
             Debug.Log(Time.time >= newSwitchTime);
             if (dash > 0 && Time.time >= newSwitchTime)
             {
-                Debug.Log("raelz,rdlmzae,dmlz");
                 rb.AddForce(vectorDirecteur.normalized * 10f, ForceMode.Impulse);
                 newSwitchTime = Time.time + cooldownTime;
 
