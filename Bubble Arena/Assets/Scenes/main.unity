@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -351,14 +352,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 673054604}
-  - {fileID: 1796228888}
   - {fileID: 183889963}
-  - {fileID: 1282677201}
-  - {fileID: 598522837}
-  - {fileID: 540568420}
   - {fileID: 1090677487}
-  - {fileID: 1510076519}
+  - {fileID: 1278801430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &314446593
@@ -735,7 +731,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -750,7 +745,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2058,6 +2053,11 @@ Transform:
   - {fileID: 398373607}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1278801430 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2875677559087441825, guid: ac19897caf8a5df4ea674479ee7526c5, type: 3}
+  m_PrefabInstance: {fileID: 1043130809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1351081132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2576,3 +2576,4 @@ SceneRoots:
   - {fileID: 594433983}
   - {fileID: 695707477}
   - {fileID: 899698376}
+  - {fileID: 305327953}

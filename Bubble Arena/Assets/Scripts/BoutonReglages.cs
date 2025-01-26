@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class BoutonReglages : MonoBehaviour
 {
+
+    public void gotToSelectionScene()
+    {
+        SceneManager.LoadScene("SelectPersonnage");
+    }
     public void Reglages() 
     {
         SceneManager.LoadScene("Parametres");

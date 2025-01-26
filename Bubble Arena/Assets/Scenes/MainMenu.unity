@@ -191,7 +191,7 @@ Canvas:
   m_GameObject: {fileID: 110136391}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -444,7 +444,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 804066904}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2083824634}
+        m_TargetAssemblyTypeName: BoutonReglages, Assembly-CSharp
+        m_MethodName: gotToSelectionScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &804066904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,7 +799,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.8207547, g: 0.26713243, b: 0.5439436, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1214,6 +1226,7 @@ GameObject:
   - component: {fileID: 2129557932}
   - component: {fileID: 2129557934}
   - component: {fileID: 2129557933}
+  - component: {fileID: 2129557935}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1337,6 +1350,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129557931}
   m_CullTransparentMesh: 1
+--- !u!114 &2129557935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129557931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3c995fd432d418da6d35822a5e1604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modificateur: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
