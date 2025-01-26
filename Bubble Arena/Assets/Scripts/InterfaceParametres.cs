@@ -6,20 +6,17 @@ using UnityEngine.UI;
 
 public class InterfaceParametres : MonoBehaviour
 {
-    public Slider sliderVolume;
+    public Slider sliderVolumeMusic;
 
     public void Start()
     {
         float savedVolume = PlayerPrefs.GetFloat("Volume", 1f);
-        sliderVolume.value = savedVolume;
-        AudioListener.volume = savedVolume;
-
-        sliderVolume.onValueChanged.AddListener(SetVolume);
+        sliderVolumeMusic.value = savedVolume;
     }
 
     public void SetVolume(float volume)
     {
-        AudioListener.volume = volume;
+Debug.Log("oui" + volume);
         PlayerPrefs.SetFloat("Volume", volume);
     }
 
@@ -30,10 +27,10 @@ public class InterfaceParametres : MonoBehaviour
 
     public void ResetSettings()
     {
-        if (sliderVolume != null)
+        if (sliderVolumeMusic != null)
         {
             Debug.Log("reset du slider à la valeur max");
-            sliderVolume.value = sliderVolume.maxValue;
+            sliderVolumeMusic.value = sliderVolumeMusic.maxValue;
         }
         else
         {
