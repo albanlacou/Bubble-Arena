@@ -30,6 +30,9 @@ public class Timer : MonoBehaviour
                         timerIsRunning = false;
                         textMeshPro.text = "This has game out" + (int)timeRemaining;
                     }
+                    if (timeRemaining <= 5) {
+                        textMeshPro.color = Color.red;
+                    }
                     // Debug.Log("Time remaining: " + timeRemaining);
                     textMeshPro.text = "Time remaining : " + (int)timeRemaining + "s";
                 }
