@@ -18,7 +18,7 @@ public class Arena : MonoBehaviour
 
     public ScoreDisplay scoreDisplay;
 
-    int i = 0;
+
 
     private void Awake()
     {
@@ -26,13 +26,37 @@ public class Arena : MonoBehaviour
         {
             instance = this;
         }
+        int tata = PlayerPrefs.GetInt("NbJoueurs");
+
+
+        Player[] allPlayers = FindObjectsOfType<Player>();
+
+        List<GameObject> playersToRemove = new List<GameObject>();
+
+        // Identifier les joueurs à supprimer
+        foreach (Player player in allPlayers)
+        {
+            if (player.NumeroPlayer > tata)
+            {
+                playersToRemove.Add(player.gameObject);
+            }
+        }
+
+        // Supprimer les joueurs identifiés
+        foreach (GameObject playerObj in playersToRemove)
+        {
+            Debug.Log($"Suppression du joueur {playerObj.name} avec NumeroPlayer {playerObj.GetComponent<Player>().NumeroPlayer}");
+            Destroy(playerObj);
+        }
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         roundManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundManager>();
-        currentPlayer = GameObject.FindGameObjectsWithTag("Player").Count();
+
+        
 
     }
 

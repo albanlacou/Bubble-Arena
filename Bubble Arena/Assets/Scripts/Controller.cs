@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     private Dictionary<int,int> controllerToPlayerMap = new Dictionary<int, int>();
     public List<GameObject> players = new List<GameObject>();
+    private const int NbPLayer = 0;
 
     int nbPlayer = 0;
     void Start()
@@ -27,6 +28,7 @@ void Update()
             }
 
             if(nbPlayer >= 2 && Input.GetKeyDown(KeyCode.JoystickButton7)){
+                PlayerPrefs.SetInt("NbJoueurs", nbPlayer);
                 SceneManager.LoadScene("main");
             }
         }

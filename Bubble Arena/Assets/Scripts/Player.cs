@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
 
     public bool toto = true;
 
+    public int NumeroPlayer;
+
 
     [SerializeField] private float vitesse = 150f; // Vitesse de déplacement
     // Start is called before the first frame update
@@ -72,10 +74,23 @@ public class Player : MonoBehaviour
                 mouvementVertical = Input.GetAxis("Vertical");
                 dash = Input.GetAxis("PlayerOneDash");
             }
-            else
+            else if(NumeroPlayer == 2)
             {
                 mouvementHorizontal = Input.GetAxis("Player2Horizontal");
                 mouvementVertical = Input.GetAxis("Player2Vertical");
+                ash = Input.GetAxis("PlayerTwoDash");
+            }
+            else if(NumeroPlayer == 3)
+            {
+                mouvementHorizontal = Input.GetAxis("Player3Horizontal");
+                mouvementVertical = Input.GetAxis("Player3Vertical");
+                ash = Input.GetAxis("PlayerThreeDash");
+            }
+            else if(NumeroPlayer == 4)
+            {
+                mouvementHorizontal = Input.GetAxis("Player4Horizontal");
+                mouvementVertical = Input.GetAxis("Player4Vertical");
+                ash = Input.GetAxis("PlayerForDash");
             }
             oldPosition = gameObject.transform.position;
 
