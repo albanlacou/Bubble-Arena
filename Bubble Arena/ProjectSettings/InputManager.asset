@@ -18,7 +18,7 @@ InputManager:
     sensitivity: 3
     snap: 1
     invert: 0
-    type: 0
+    type: 1
     axis: 0
     joyNum: 0
   - serializedVersion: 3
@@ -34,7 +34,7 @@ InputManager:
     sensitivity: 3
     snap: 1
     invert: 0
-    type: 0
+    type: 1
     axis: 0
     joyNum: 0
   - serializedVersion: 3
@@ -554,6 +554,102 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
+    positiveButton: joystick button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: PlayerTwoDash
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: PlayerThreeDash
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: PlayerForDash
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 0
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 0
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: Player3Horizontal
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 0
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: Player3Vertical
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 0
+    invert: 1
+    type: 2
+    axis: 1
+    joyNum: 3
+  - serializedVersion: 3
+    m_Name: Player4Horizontal
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -564,13 +660,13 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
-    m_Name: PlayerTwoDash
+    m_Name: Player4Vertical
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: space
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -578,7 +674,7 @@ InputManager:
     sensitivity: 3
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
-    joyNum: 2
+    type: 2
+    axis: 1
+    joyNum: 4
   m_UsePhysicalKeys: 0

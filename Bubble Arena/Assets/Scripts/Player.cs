@@ -154,6 +154,7 @@ private void OnCollisionEnter(Collision collision)
             Debug.Log(Time.time >= newSwitchTime);
             if (dash > 0 && Time.time >= newSwitchTime)
             {
+                Debug.Log("DASH");
                 rb.AddForce(vectorDirecteur.normalized * 10f, ForceMode.Impulse);
                 newSwitchTime = Time.time + cooldownTime;
 

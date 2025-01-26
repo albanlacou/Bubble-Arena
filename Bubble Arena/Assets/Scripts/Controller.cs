@@ -6,34 +6,38 @@ using UnityEngine.UI;
 public class Controller : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Dictionary<int,int> controllerToPlayerMap = new Dictionary<int, int>();
+    private Dictionary<int, int> controllerToPlayerMap = new Dictionary<int, int>();
     public List<GameObject> players = new List<GameObject>();
     private const int NbPLayer = 0;
 
     int nbPlayer = 0;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-void Update()
+    void Update()
     {
-        for (int i = 0; i < 2; i++) // Boucle pour gérer les 2 manettes
+        Debug.Log(controllerToPlayerMap);
+        for (int i = 0; i < 4; i++) // Boucle pour gérer les 2 manettes
         {
+          
             // Vérifier si le bouton A (bouton 0 par défaut) est pressé sur la manette i
             if (Input.GetKeyDown($"joystick {i + 1} button 0"))
             {
+                Debug.Log("tzkmsnfsdklnfklsen");
                 HandleControllerInput(i);
+
             }
 
-            if(nbPlayer >= 2 && Input.GetKeyDown(KeyCode.JoystickButton7)){
+            if (nbPlayer >= 2 && Input.GetKeyDown(KeyCode.JoystickButton7))
+            {
                 PlayerPrefs.SetInt("NbJoueurs", nbPlayer);
                 SceneManager.LoadScene("main");
             }
         }
     }
-
     void HandleControllerInput(int controllerIndex)
     {
         // Si la manette a déjà sélectionné un joueur, on ignore
@@ -62,7 +66,7 @@ void Update()
     void AssignPlayerColor(int playerIndex, int controllerIndex)
     {
         // Générer une couleur aléatoire
-        Color colorToAssign = new Color(0,0,0);
+        Color colorToAssign = new Color(0, 0, 0);
         players[playerIndex].GetComponent<Image>().color = colorToAssign;
         Debug.Log($"Couleur assignée au joueur {playerIndex + 1} par la manette {controllerIndex + 1} : {colorToAssign}");
     }
