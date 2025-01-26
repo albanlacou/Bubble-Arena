@@ -9,6 +9,8 @@ public class RoundManager : MonoBehaviour
 
     public int round = 0;
 
+    public int nbPlayer = 0;
+
     [SerializeField]
     private TMP_Text roundText;
 
@@ -57,5 +59,25 @@ public class RoundManager : MonoBehaviour
         downBlackBar.transform.DOMoveY(-7, 1);
         roundText.enabled = false;
         playerCanMove = true;
+    }
+
+    public void SavedData()
+    {
+        GameObject[] listPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+        nbPlayer = 0; // Réinitialiser le compteur de joueurs
+        foreach (GameObject p in listPlayers)
+        {
+            Player player = p.GetComponent<Player>();
+            if (player != null)
+            {
+                nbPlayer++;
+                // Sauvegarder les données du joueur
+                PlayerPrefs.SetInt("PlayerNumber" + nbPlayer, player.NumeroPlayer); // Numéro du joueur
+                PlayerPrefs.SetString("PlayerScore" + nbPlayer, player.pointPlayer.ToString()); // Score du joueur
+            }
+        }
+        PlayerPrefs.SetInt("nbPlayer", nbPlayer);
+        Debug.Log("Données sauvegardées.");
     }
 }
