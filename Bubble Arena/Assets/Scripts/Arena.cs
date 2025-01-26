@@ -64,11 +64,13 @@ public class Arena : MonoBehaviour
                 if (p.activeSelf)
                 {
                     p.GetComponent<Player>().pointPlayer++;
+                    p.gameObject.transform.position = p.gameObject.GetComponent<Player>().spawnPoint;
                     ReactifAllPlayer();
                     scoreDisplay.scoreHUD();
                 }
             }
             roundManager.ChangeRound();
+            reInit();
 
         }
     }
@@ -80,5 +82,11 @@ public class Arena : MonoBehaviour
             pR.gameObject.SetActive(true);
             pR.gameObject.transform.position = pR.gameObject.GetComponent<Player>().spawnPoint;
         }
+    }
+
+
+    public void reInit()
+    {
+        currentPlayer = GameObject.FindGameObjectsWithTag("Player").Count();
     }
 }
