@@ -62,7 +62,7 @@ void Update()
     void AssignPlayerColor(int playerIndex, int controllerIndex)
     {
         // Générer une couleur aléatoire
-        Color colorToAssign = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        Color colorToAssign = new Color(0,0,0);
         players[playerIndex].GetComponent<Image>().color = colorToAssign;
         Debug.Log($"Couleur assignée au joueur {playerIndex + 1} par la manette {controllerIndex + 1} : {colorToAssign}");
     }
