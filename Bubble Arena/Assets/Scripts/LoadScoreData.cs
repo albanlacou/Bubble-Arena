@@ -6,12 +6,13 @@ public class Savedata : MonoBehaviour
 {
     public int nbPlayer = 0;
 
-    // Méthode pour sauvegarder les données
+    // M?thode pour sauvegarder les donn?es
     
 
-    // Méthode pour charger les données
+    // M?thode pour charger les donn?es
     public void LoadData()
     {
+
         nbPlayer = PlayerPrefs.GetInt("nbPlayer", 0);
 
         for (int i = 1; i <= nbPlayer; i++)

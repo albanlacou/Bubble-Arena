@@ -17,20 +17,17 @@ public class LoadScoreData : MonoBehaviour
         LoadData();
     }
 
-    // Méthode pour charger les données
+    // M?thode pour charger les donn?es
     public void LoadData()
     {
         nbPlayer = PlayerPrefs.GetInt("nbPlayer", 0);
-        nbPlayer = 4;
 
         for (int i = 1; i <= nbPlayer; i++)
         {
 
-            PlayerPrefs.SetInt("PlayerNumber" + i, i);
-            PlayerPrefs.SetInt("PlayerScore" + i, i);
-
             int playerNumber = PlayerPrefs.GetInt("PlayerNumber" + i, -1);
-            int playerScore = PlayerPrefs.GetInt("PlayerScore" + i, 0);
+            string playerScore = PlayerPrefs.GetString("PlayerScore" + i, "");
+            Debug.Log("PlayerScore" + i+" : " + playerScore);
 
             top[i-1].text = "Player " + playerNumber;
             score[i-1].text = playerScore.ToString() ;

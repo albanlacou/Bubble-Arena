@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoundManager : MonoBehaviour
 {
@@ -47,15 +48,23 @@ public class RoundManager : MonoBehaviour
 
     public void ChangeRound()
     {
-        playerCanMove = false;
-        upBlackBar.transform.DOMoveY(4.75f, 1);
-        downBlackBar.transform.DOMoveY(-4.75f, 1);
-        roundText.enabled = true;
-        round++;
-        roundText.text = "Round: " + round;
-        soundManager.playRound(round);
+        if(round != 5)
+        {
+            playerCanMove = false;
+            upBlackBar.transform.DOMoveY(4.75f, 1);
+            downBlackBar.transform.DOMoveY(-4.75f, 1);
+            roundText.enabled = true;
+            round++;
+            roundText.text = "Round: " + round;
+            soundManager.playRound(round);
         
-        Invoke(nameof(startRound), 3f);
+            Invoke(nameof(startRound), 3f);
+        }
+        else
+        {
+            Invoke(nameof(savedData), 0.5f);
+        }
+       
 
     }
 
@@ -68,23 +77,24 @@ public class RoundManager : MonoBehaviour
         playerCanMove = true;
     }
 
-    public void SavedData()
+    public void savedData()
     {
         GameObject[] listPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-        nbPlayer = 0; // Réinitialiser le compteur de joueurs
+        nbPlayer = 0; // R?initialiser le compteur de joueurs
         foreach (GameObject p in listPlayers)
         {
             Player player = p.GetComponent<Player>();
             if (player != null)
             {
                 nbPlayer++;
-                // Sauvegarder les données du joueur
-                PlayerPrefs.SetInt("PlayerNumber" + nbPlayer, player.NumeroPlayer); // Numéro du joueur
+                // Sauvegarder les donn?es du joueur
+                PlayerPrefs.SetInt("PlayerNumber" + nbPlayer, player.NumeroPlayer); // Num?ro du joueur
                 PlayerPrefs.SetString("PlayerScore" + nbPlayer, player.pointPlayer.ToString()); // Score du joueur
+                Debug.Log("PlayerScore" + nbPlayer+" : "+player.pointPlayer.ToString());
             }
         }
         PlayerPrefs.SetInt("nbPlayer", nbPlayer);
-        Debug.Log("Données sauvegardées.");
+        SceneManager.LoadScene("ScoreMenu");
     }
 }

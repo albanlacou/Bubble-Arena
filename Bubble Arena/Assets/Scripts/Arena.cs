@@ -105,7 +105,7 @@ public class Arena : MonoBehaviour
 
     void ReactifAllPlayer()
     {
-        Debug.Log(playerToReactive.Count());
+        
         foreach (Player pR in playerToReactive) { 
             pR.gameObject.SetActive(true);
             pR.gameObject.transform.position = pR.gameObject.GetComponent<Player>().spawnPoint;
