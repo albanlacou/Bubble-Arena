@@ -160,5 +160,7 @@ MonoBehaviour:
   speed: 40
   isPlayerOne: 1
   vectorDirecteur: {x: 0, y: 0, z: 0}
+  baseForce: 10
+  forceIncreaseRate: 1
   vitesse: 5
 >>>>>>> main:Bubble Arena/Assets/Prefab/Player One.prefab
