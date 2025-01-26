@@ -38,19 +38,21 @@ public class RoundManager : MonoBehaviour
 
     public void ChangeRound()
     {
+        playerCanMove = false;
         upBlackBar.transform.DOMoveY(4.75f, 1);
         downBlackBar.transform.DOMoveY(-4.75f, 1);
         roundText.enabled = true;
         round++;
         roundText.text = "Round: " + round;
         soundManager.playRound(round);
-        playerCanMove = false;
+        
         Invoke(nameof(startRound), 3f);
 
     }
 
     public void startRound()
     {
+ 
         upBlackBar.transform.DOMoveY(7,1);
         downBlackBar.transform.DOMoveY(-7, 1);
         roundText.enabled = false;
