@@ -62,6 +62,7 @@ public class RoundManager : MonoBehaviour
         }
         else
         {
+            playerCanMove = false;
             Invoke(nameof(savedData), 0.5f);
         }
        
