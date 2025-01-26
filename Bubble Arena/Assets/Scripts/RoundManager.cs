@@ -48,7 +48,7 @@ public class RoundManager : MonoBehaviour
 
     public void ChangeRound()
     {
-        if(round != 5)
+        if (round != 5)
         {
             playerCanMove = false;
             upBlackBar.transform.DOMoveY(4.75f, 1);
@@ -57,8 +57,15 @@ public class RoundManager : MonoBehaviour
             round++;
             roundText.text = "Round: " + round;
             soundManager.playRound(round);
-        
+
             Invoke(nameof(startRound), 3f);
+            GameObject[] players =  GameObject.FindGameObjectsWithTag("Player");
+
+        foreach(GameObject player in players)
+            {
+                player.GetComponent<Player>().accumulatedForce = player.GetComponent<Player>().baseForce;
+            }
+
         }
         else
         {

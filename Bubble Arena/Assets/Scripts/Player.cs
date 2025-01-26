@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     public float baseForce = 10f; // La force de base appliquée
     public float forceIncreaseRate = 1f; // Augmentation de la force par seconde
 
-    private float accumulatedForce;
+    public float accumulatedForce;
 
     private RoundManager roundManager;
 
